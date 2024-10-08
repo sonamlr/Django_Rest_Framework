@@ -126,7 +126,10 @@ class StudentRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 
 
 # viewsets class api
-class StudentViewSet(viewsets.ViewSet): print(self.basename)lf.suffix)
+class StudentViewSet(viewsets.ViewSet):
+    def list(self, request):
+        print(self.basename)
+        print(self.suffix)
         print(self.name)
         stu = Student.objects.all()
         serializer = StudentSerializer(stu, many=True)
@@ -156,6 +159,20 @@ class StudentViewSet(viewsets.ViewSet): print(self.basename)lf.suffix)
         stu = Student.objects.get(pk=pk)
         stu.delete()
         return Response({'msg': 'Data Deleted'})
-            
+
+
+#ModelViewSet
+class StudentModelViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    
+
+#ReadOnlyModelViewSet
+class StudentReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet): 
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+
 
 

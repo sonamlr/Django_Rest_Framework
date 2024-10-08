@@ -5,7 +5,9 @@ from rest_framework.routers import DefaultRouter
 #Router object Created
 router = DefaultRouter()
 #Registed class with router
-router.register('studentrouterapi', views.StudentViewSet, basename='student')
+# router.register('studentrouterapi', views.StudentViewSet, basename='student')
+# router.register('studentrouterapi', views.StudentModelViewSet, basename='student')
+router.register('studentrouterapi', views.StudentReadOnlyModelViewSet, basename='student')
 urlpatterns = [
     # function based view url 
     path('studentapi/', views.student_api),
